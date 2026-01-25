@@ -31,8 +31,9 @@ function App2() {
       const { data, errors } = await
         amplifyClient.queries.askBedrock(
         {
-            ingredients: [formData.get("ingredients")?.toString() || ""],
-          });
+          ingredients: [formData.get("ingredients")?.toString() || ""],
+          mode: formData.get("mode")?.toString(),
+        });
 
       if (!errors) {
         setResult(data?.body || "No data returned");
@@ -64,13 +65,14 @@ function App2() {
       </div>
       <form onSubmit={onSubmit} className="form-container">
         <div className="search-container">
-          <input
-            type="text"
-            className="wide-input"
-            id="ingredients"
-            name="ingredients"
-            placeholder="oasis,blur...etc"
-          />
+          <label> Ingredients: <input type="text" name="ingredients" value="doves"/> </label> 
+          <label> Mode: 
+            <select name="mode" defaultValue="recipe"> 
+              <option value="recipe">Recipe</option> 
+              <option value="bands">Bands</option> 
+              <option value="movies">movies</option> 
+            </select> </label>
+          
           <button type="submit" className="search-button">
             Generate
           </button>

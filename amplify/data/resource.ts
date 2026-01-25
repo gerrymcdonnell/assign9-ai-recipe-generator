@@ -7,7 +7,7 @@ const schema = a.schema({
   }),
   askBedrock: a
     .query()
-    .arguments({ingredients: a.string().array(),mode: 'bands'})
+    .arguments({ingredients: a.string().array(),mode:a.string()})
     .returns(a.ref("BedrockResponse"))
     .authorization((allow) => [allow.authenticated()])
     .handler(

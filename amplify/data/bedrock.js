@@ -1,15 +1,16 @@
 export function request(ctx) {
-    const { ingredients = [],mode = "" } = ctx.args;
+    const { ingredients = [], mode = ctx.mode } = ctx.args;
   
     // Construct the prompt with the provided ingredients
     //const prompt = `Suggest a recipe idea using these ingredients: ${ingredients.join(", ")}.`;
 
     const prompts = { 
       recipe: `Suggest a recipe idea using these ingredients: ${ingredients.join(", ")}.`, 
-      bands: `Suggest bands similar to: ${ingredients.join(", ")}.` 
+      bands: `Suggest bands similar to: ${ingredients.join(", ")}.`,
+      movies: `Suggest movies similar to: ${ingredients.join(", ")}.` 
     };
 
-    const prompt = prompts[ctx.mode];
+    const prompt = prompts[mode];
 
     console.log(prompt);
   
